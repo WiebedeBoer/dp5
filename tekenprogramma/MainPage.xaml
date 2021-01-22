@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="tekenprogramma.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:tekenprogramma"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="720" Width="1280">
+    <Grid HorizontalAlignment="Left" Height="720" VerticalAlignment="Top" Width="1280">
+        <Canvas HorizontalAlignment="Left" Height="360" Margin="0,360,0,0" VerticalAlignment="Bottom" Width="1280" Name="paintSurface" PointerPressed="Drawing_pressed">
+            <Canvas.Background>
+                <SolidColorBrush Color="Red" Opacity="0"/>
+            </Canvas.Background>
+        </Canvas>
+        <!--first row-->
+        <Canvas HorizontalAlignment="Left" VerticalAlignment="top" Margin="0,0,0,0" Height="360" Width="1280" Name="front_canvas" PointerMoved="Front_canvas_PointerMoved" Background="#FFFFFFFF">
+            <Button FontSize="25px" Content="Undo" Canvas.Left="0" Canvas.Top="0" Width="305" Height="100" Click="Undo_Click" Name="Undo"/>
+            <Button FontSize="25px" Content="Redo" Canvas.Left="325" Canvas.Top="0" Width="305" Height="100" Click="Redo_Click" Name="Redo"/>
+            <TextBox FontSize="25px" Canvas.Left="650" Canvas.Top="0" Width="305" Height="100" TextWrapping="Wrap" Text="Width" Name="Width" TextChanged="Width_TextChanged"/>
+            <TextBox FontSize="25px" Canvas.Left="975" Canvas.Top="0" Width="305" Height="100" TextWrapping="Wrap" Text="Height" Name="Height" TextChanged="Height_TextChanged" />
+           <!--second row-->
+            <Button FontSize="25px" Content="Save" Canvas.Left="0" Canvas.Top="130" Width="305" Height="100" Click="Save_Click" Name="Save"/>
+            <Button FontSize="25px" Content="Load" Canvas.Left="325" Canvas.Top="130" Width="305" Height="100" Click="Load_Click" Name="Load"/>
+            <Button FontSize="25px" Content="Resize" Canvas.Left="650" Canvas.Top="130" Width="305" Height="100" Click="Resize_Click" Name="Resize"/>
+            <Button FontSize="25px" Content="Move" Canvas.Left="975" Canvas.Top="130" Width="305" Height="100" Click="Move_Click" Name="Move"/>
+            <!---third row-->
+            <Button FontSize="25px" Content="Elipse" Canvas.Left="0" Canvas.Top="260" Width="305" Height="100" Click="Elipse_Click" Name="Elipse"/>
+            <Button FontSize="25px" Content="Rectangle" Canvas.Left="325" Canvas.Top="260" Width="305" Height="100" Click="Rectangle_Click" Name="Rectangle"/>
+            <Button FontSize="25px" Content="Ornament" Canvas.Left="650" Canvas.Top="260" Width="305" Height="100" Click="Ornament_Click" Name="Ornament"/>
+            <Button FontSize="25px" Content="Group" Canvas.Left="975" Canvas.Top="260" Width="305" Height="100" Click="Group_Click" Name="Group"/>
+
+        </Canvas>
+
+    </Grid>   
+
+</Page>

@@ -1,0 +1,11 @@
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\App.g.i.cs
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\App.g.cs
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\App.xaml
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\MainPage.xaml
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\App.xbf
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\MainPage.xbf
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\tekenprogramma.csprojAssemblyReference.cache
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\MainPage.g.i.cs
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\MainPage.g.cs
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\XamlTypeInfo.g.cs
+C:\Users\pimsp\Desktop\tekenprogramma.git\branches\wiebe\tekenprogramma\tekenprogramma\obj\ARM\Debug\XamlSaveStateFile.xml
