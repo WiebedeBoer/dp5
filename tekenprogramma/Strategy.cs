@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace tekenprogramma
 {
-    
+
     public abstract class Strategy
     {
         public static Strategy strategy;
@@ -21,9 +21,9 @@ namespace tekenprogramma
 
         public abstract String toString();
 
-        public abstract void execute(double left, double top, double width, double height, Shape g, boolean selected);
+        public abstract void execute(double left, double top, double width, double height, FrameworkElement g, bool selected);
     }
-    
+
     public class RectangleStrategy : Strategy
     {
         public static Strategy strategy;
@@ -43,12 +43,12 @@ namespace tekenprogramma
             return strategy;
         }
 
-        public String toString()
+        public override String toString()
         {
             return "rectangle";
         }
 
-        public void Execute(double left, double top, double width, double height, Rectangle g, boolean selected)
+        public override void execute(double left, double top, double width, double height, FrameworkElement g, bool selected)
         {
 
         }
@@ -73,12 +73,12 @@ namespace tekenprogramma
             return strategy;
         }
 
-        public String toString()
+        public override String toString()
         {
             return "ellipse";
         }
 
-        public void Execute(double left, double top, double width, double height, Ellipse g, boolean selected)
+        public override void execute(double left, double top, double width, double height, FrameworkElement g, bool selected)
         {
 
         }
