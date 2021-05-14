@@ -8143,11 +8143,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wiebe\\Documents\\patterns\\dp2\\tekenprogramma\\tekenprogramma.csproj",
+      "projectUniqueName": "C:\\Users\\wiebe\\Documents\\patterns\\dp5\\tekenprogramma\\tekenprogramma.csproj",
       "projectName": "tekenprogramma",
-      "projectPath": "C:\\Users\\wiebe\\Documents\\patterns\\dp2\\tekenprogramma\\tekenprogramma.csproj",
+      "projectPath": "C:\\Users\\wiebe\\Documents\\patterns\\dp5\\tekenprogramma\\tekenprogramma.csproj",
       "packagesPath": "C:\\Users\\wiebe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wiebe\\Documents\\patterns\\dp2\\tekenprogramma\\obj\\",
+      "outputPath": "C:\\Users\\wiebe\\Documents\\patterns\\dp5\\tekenprogramma\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
