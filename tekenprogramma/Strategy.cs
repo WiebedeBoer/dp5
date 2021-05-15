@@ -9,14 +9,15 @@ using System.Collections.Generic;
 
 namespace tekenprogramma
 {
-
+    /*
     public interface IStrategy
     {
         FrameworkElement Execute(double left, double top, double width, double height, FrameworkElement g, bool selected, Invoker invoker);
     }
+    */
 
 
-    public abstract class Strategy : IStrategy
+    public abstract class Strategy : IComponent
     {
         public static Strategy strategy;
 
@@ -25,11 +26,16 @@ namespace tekenprogramma
             return strategy;
         }
 
-        public abstract String ToString(double x, double y, double width, double height);
+        public abstract FrameworkElement Accept(IVisitor visitor, Invoker invoker, PointerRoutedEventArgs e, Canvas paintSurface, FrameworkElement selectedelement, Location location);
+        public abstract string Write(IWriter visitor, FrameworkElement element, Canvas paintSurface);
+
+        public abstract string ToString(double x, double y, double width, double height);
 
         public abstract FrameworkElement Execute(double left, double top, double width, double height, FrameworkElement g, bool selected, Invoker invoker);
     }
 
+
+    /*
     //rectangle singleton
     public class RectangleStrategy : Strategy
     {
@@ -140,10 +146,11 @@ namespace tekenprogramma
         public FrameworkElement ExecuteStrategy(double x, double y, double width, double height, FrameworkElement g, bool selected, Invoker invoker)
         {
             return strategy.Execute(x, y, width, height, g, selected, invoker);
-        //    return strategy;
+            //    return strategy;
         }
     }
 
-
+    */
 
 }
+

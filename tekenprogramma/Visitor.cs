@@ -118,48 +118,75 @@ namespace tekenprogramma
     //components
     //
 
+    //component interface
     public interface IComponent
     {
         FrameworkElement Accept(IVisitor visitor, Invoker invoker, PointerRoutedEventArgs e, Canvas paintSurface, FrameworkElement selectedelement, Location location);
         string Write(IWriter visitor, FrameworkElement element, Canvas paintSurface);
+
+        string ToString(double x, double y, double width, double height);
+
+        FrameworkElement Execute(double left, double top, double width, double height, FrameworkElement g, bool selected, Invoker invoker);
     }
 
-    //rectangle component
-    public class ConcreteComponentRectangle : IComponent
+    //rectangle component singleton
+    public class ConcreteComponentRectangle : Strategy
     {
         public double x;
         public double y;
         public double width;
         public double height;
+        public static Strategy strategy;
 
-        public ConcreteComponentRectangle(double x, double y, double width, double height)
+        public List<TextBlock> ornaments = new List<TextBlock>();
+        public List<TextBlock> removedOrnaments = new List<TextBlock>();
+        public List<string> ornamentPositions = new List<string>();
+        public List<string> removedOrnamentPositions = new List<string>();
+
+        //public ConcreteComponentRectangle(double x, double y, double width, double height)
+        private ConcreteComponentRectangle()
+        //public ConcreteComponentRectangle()
         {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+            //this.x = x;
+            //this.y = y;
+            //this.width = width;
+            //this.height = height;
+        }
+
+        // Prevents the strategy from instantiating multiple times
+        public static Strategy GetInstance()
+        {
+            if (strategy == null)
+            {
+                strategy = new ConcreteComponentRectangle();
+            }
+            return strategy;
+        }
+
+        public override String ToString(double x, double y, double width, double height)
+        {
+            string str = "rectangle" + x + " " + y + " " + width + " " + height;
+            return str;
         }
 
         //Note that calling ConcreteComponent which matches the current class name. 
         //This way we let the visitor know the class of the component it works with.
-        public FrameworkElement Accept(IVisitor visitor, Invoker invoker, PointerRoutedEventArgs e, Canvas paintSurface, FrameworkElement selectedelement, Location location)
+        public override FrameworkElement Accept(IVisitor visitor, Invoker invoker, PointerRoutedEventArgs e, Canvas paintSurface, FrameworkElement selectedelement, Location location)
         {
             FrameworkElement madeElement = visitor.VisitConcreteComponentRectangle(this, invoker, selectedelement, paintSurface, location);
             return madeElement;
         }
 
-        public string Write(IWriter visitor, FrameworkElement element, Canvas paintSurface)
+        public override string Write(IWriter visitor, FrameworkElement element, Canvas paintSurface)
         {
             string str = visitor.WriteRectangle(this, element, paintSurface);
             return str;
         }
 
-        /*
         // Concrete Components may have special methods that don't exist in their base class or interface. 
         //The Visitor is still able to use these methods since it's aware of the component's concrete class.
-        public void ExclusiveMethodOfConcreteComponentRectangle()
+        public override FrameworkElement Execute(double x, double y, double width, double height, FrameworkElement g, bool selected, Invoker invoker)
         {
-            return "Rectangle";
             Rectangle newRectangle = new Rectangle(); //instance of new rectangle shape
             newRectangle.AccessKey = invoker.executer.ToString();
             newRectangle.Width = width; //set width
@@ -170,43 +197,73 @@ namespace tekenprogramma
             newRectangle.Name = "Rectangle"; //attach name
             Canvas.SetLeft(newRectangle, x); //set left position
             Canvas.SetTop(newRectangle, y); //set top position 
+            g = newRectangle;
+
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+
+            return g;
+
         }
-        */
     }
 
-    //ellipse component
-    public class ConcreteComponentEllipse : IComponent
+    //ellipse component singleton
+    public class ConcreteComponentEllipse : Strategy
     {
         public double x;
         public double y;
         public double width;
         public double height;
+        public static Strategy strategy;
 
-        public ConcreteComponentEllipse(double x, double y, double width, double height)
+        public List<TextBlock> ornaments = new List<TextBlock>();
+        public List<TextBlock> removedOrnaments = new List<TextBlock>();
+        public List<string> ornamentPositions = new List<string>();
+        public List<string> removedOrnamentPositions = new List<string>();
+
+        //public ConcreteComponentEllipse(double x, double y, double width, double height)
+        //public ConcreteComponentEllipse()
+        private ConcreteComponentEllipse()
         {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+            //this.x = x;
+            //this.y = y;
+            //this.width = width;
+            //this.height = height;
+        }
+
+        // Prevents the strategy from instantiating multiple times
+        public static Strategy GetInstance()
+        {
+            if (strategy == null)
+            {
+                strategy = new ConcreteComponentEllipse();
+            }
+            return strategy;
         }
 
         // Same here: ConcreteComponent => ConcreteComponent
-        public FrameworkElement Accept(IVisitor visitor, Invoker invoker, PointerRoutedEventArgs e, Canvas paintSurface, FrameworkElement selectedelement, Location location)
+        public override FrameworkElement Accept(IVisitor visitor, Invoker invoker, PointerRoutedEventArgs e, Canvas paintSurface, FrameworkElement selectedelement, Location location)
         {
             FrameworkElement madeElement = visitor.VisitConcreteComponentEllipse(this, invoker, selectedelement, paintSurface, location);
             return madeElement;
         }
 
-        public string Write(IWriter visitor, FrameworkElement element, Canvas paintSurface)
+        public override String ToString(double x, double y, double width, double height)
+        {
+            string str = "ellipse" + x + " " + y + " " + width + " " + height;
+            return str;
+        }
+
+        public override string Write(IWriter visitor, FrameworkElement element, Canvas paintSurface)
         {
             string str = visitor.WriteEllipse(this, element, paintSurface);
             return str;
         }
 
-        /*
-        public void ExclusiveMethodOfConcreteComponentEllipse()
+        public override FrameworkElement Execute(double x, double y, double width, double height, FrameworkElement g, bool selected, Invoker invoker)
         {
-            return "Ellipse";
             Ellipse newEllipse = new Ellipse(); //instance of new ellipse shape
             newEllipse.AccessKey = invoker.executer.ToString();
             newEllipse.Width = width;
@@ -217,22 +274,34 @@ namespace tekenprogramma
             newEllipse.Name = "Ellipse";//attach name
             Canvas.SetLeft(newEllipse, x);//set left position
             Canvas.SetTop(newEllipse, y);//set top position   
+            g = newEllipse;
+
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+
+            return g;
         }
-        */
     }
 
-    //visitor cinterface
+    //visitor interface
     public interface IVisitor
     {
-        FrameworkElement VisitConcreteComponentRectangle(ConcreteComponentRectangle component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location);
+        //FrameworkElement VisitConcreteComponentRectangle(ConcreteComponentRectangle component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location);
 
-        FrameworkElement VisitConcreteComponentEllipse(ConcreteComponentEllipse component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location);
+        //FrameworkElement VisitConcreteComponentEllipse(ConcreteComponentEllipse component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location);
+        FrameworkElement VisitConcreteComponentRectangle(Strategy component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location);
+
+        FrameworkElement VisitConcreteComponentEllipse(Strategy component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location);
+
     }
 
     //move visitor
     class ConcreteVisitorMove : IVisitor
     {
-        public FrameworkElement VisitConcreteComponentRectangle(ConcreteComponentRectangle component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        //public FrameworkElement VisitConcreteComponentRectangle(ConcreteComponentRectangle component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        public FrameworkElement VisitConcreteComponentRectangle(Strategy component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
         {
             KeyNumber(element, invoker); //move selected at removed
             FrameworkElement returnelement = null;
@@ -251,7 +320,8 @@ namespace tekenprogramma
             return returnelement;
         }
 
-        public FrameworkElement VisitConcreteComponentEllipse(ConcreteComponentEllipse component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        public FrameworkElement VisitConcreteComponentEllipse(Strategy component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        //public FrameworkElement VisitConcreteComponentEllipse(ConcreteComponentEllipse component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
         {
             KeyNumber(element, invoker); //move selected at removed
             FrameworkElement returnelement = null;
@@ -294,7 +364,8 @@ namespace tekenprogramma
     //resize visitor
     class ConcreteVisitorResize : IVisitor
     {
-        public FrameworkElement VisitConcreteComponentRectangle(ConcreteComponentRectangle component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        public FrameworkElement VisitConcreteComponentRectangle(Strategy component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        //public FrameworkElement VisitConcreteComponentRectangle(ConcreteComponentRectangle component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
         {
             KeyNumber(element, invoker); //move selected at removed
             FrameworkElement returnelement = null;
@@ -313,7 +384,8 @@ namespace tekenprogramma
             return returnelement;
         }
 
-        public FrameworkElement VisitConcreteComponentEllipse(ConcreteComponentEllipse component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        public FrameworkElement VisitConcreteComponentEllipse(Strategy component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
+        //public FrameworkElement VisitConcreteComponentEllipse(ConcreteComponentEllipse component, Invoker invoker, FrameworkElement element, Canvas paintSurface, Location location)
         {
             KeyNumber(element, invoker); //move selected at removed
             FrameworkElement returnelement = null;
@@ -354,7 +426,7 @@ namespace tekenprogramma
     }
 
 
-
+    //write to file client class
     public class WriteClient
     {
         public async void Client(Canvas paintSurface, Invoker invoker, IWriter visitor)
@@ -372,6 +444,7 @@ namespace tekenprogramma
                 if (elmcheck == 0)
                 {
                     IComponent component = invoker.drawnComponents[i];
+                    //Strategy component = invoker.drawnComponents[i];
                     //IWriter visitor = new ConcreteVisitorWrite();
                     string str = component.Write(visitor, child, paintSurface);
                     lines += str;
@@ -401,7 +474,7 @@ namespace tekenprogramma
             }
             //create and write to file
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync("dp4data.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync("dp5data.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
             await Windows.Storage.FileIO.WriteTextAsync(sampleFile, lines);
             //}
             ////file errors
@@ -522,7 +595,7 @@ namespace tekenprogramma
         string WriteEllipse(ConcreteComponentEllipse component, FrameworkElement element, Canvas paintSurface);
     }
 
-
+    //concrete writer class
     public class ConcreteVisitorWrite : IWriter
     {
 

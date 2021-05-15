@@ -115,13 +115,17 @@ namespace tekenprogramma
             if (this.element.Name == "Rectangle")
             {
                 IVisitor visitor = new ConcreteVisitorMove();
-                ConcreteComponentRectangle component = new ConcreteComponentRectangle(this.location.x, this.location.y, this.location.width, this.location.height);
+                //ConcreteComponentRectangle component = new ConcreteComponentRectangle(this.location.x, this.location.y, this.location.width, this.location.height);
+                Strategy component = ConcreteComponentRectangle.GetInstance();
+                //ConcreteComponentRectangle component = Strategy.GetInstance();
                 visitor.VisitConcreteComponentRectangle(component, this.invoker, this.element, this.paintSurface, this.location);
             }
             else if (this.element.Name == "Ellipse")
             {
                 IVisitor visitor = new ConcreteVisitorMove();
-                ConcreteComponentEllipse component = new ConcreteComponentEllipse(this.location.x, this.location.y, this.location.width, this.location.height);
+                //ConcreteComponentEllipse component = new ConcreteComponentEllipse(this.location.x, this.location.y, this.location.width, this.location.height);
+                //ConcreteComponentEllipse component = ConcreteComponentEllipse.GetInstance();
+                Strategy component = ConcreteComponentEllipse.GetInstance();
                 visitor.VisitConcreteComponentEllipse(component, this.invoker, this.element, this.paintSurface, this.location);
             }
             this.shape.Repaint(this.invoker, this.paintSurface);
@@ -170,13 +174,16 @@ namespace tekenprogramma
             if (this.element.Name == "Rectangle")
             {
                 IVisitor visitor = new ConcreteVisitorResize();
-                ConcreteComponentRectangle component = new ConcreteComponentRectangle(this.location.x, this.location.y, this.location.width, this.location.height);
+                //ConcreteComponentRectangle component = new ConcreteComponentRectangle(this.location.x, this.location.y, this.location.width, this.location.height);
+                Strategy component = ConcreteComponentRectangle.GetInstance();
+                //Strategy component = new ConcreteComponentRectangle(this.location.x, this.location.y, this.location.width, this.location.height);
                 visitor.VisitConcreteComponentRectangle(component, this.invoker, this.element, this.paintSurface, this.location);
             }
             else if (this.element.Name == "Ellipse")
             {
                 IVisitor visitor = new ConcreteVisitorResize();
-                ConcreteComponentEllipse component = new ConcreteComponentEllipse(this.location.x, this.location.y, this.location.width, this.location.height);
+                //ConcreteComponentEllipse component = new ConcreteComponentEllipse(this.location.x, this.location.y, this.location.width, this.location.height);
+                Strategy component = ConcreteComponentEllipse.GetInstance();
                 visitor.VisitConcreteComponentEllipse(component, this.invoker, this.element, this.paintSurface, this.location);
             }
             this.shape.Repaint(this.invoker, this.paintSurface);
@@ -402,6 +409,11 @@ namespace tekenprogramma
         }
     }
 
+
+
+
+
+
     /*
     //class load group
     public class LoadGroup : ICommand
@@ -409,24 +421,20 @@ namespace tekenprogramma
         private Group mycommand;
         private Canvas selectedCanvas;
         private Invoker invoker;
-
         public LoadGroup(Group mycommand, Canvas selectedCanvas, Invoker invoker)
         {
             this.mycommand = mycommand;
             this.selectedCanvas = selectedCanvas;
             this.invoker = invoker;
         }
-
         public void Execute()
         {
             this.mycommand.LoadGroup(this.mycommand, this.selectedCanvas, this.invoker);
         }
-
         public void Undo()
         {
             this.mycommand.UnloadGroup(this.selectedCanvas, this.invoker);
         }
-
         public void Redo()
         {
             this.mycommand.ReloadGroup(this.selectedCanvas, this.invoker);

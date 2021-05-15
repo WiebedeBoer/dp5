@@ -28,8 +28,8 @@ namespace tekenprogramma
 
         public Strategy strategy;
 
-        public Strategy rectangleStrategy = RectangleStrategy.GetInstance();
-        public Strategy ellipseStrategy = EllipseStrategy.GetInstance();
+        //public Strategy rectangleStrategy = RectangleStrategy.GetInstance();
+        //public Strategy ellipseStrategy = EllipseStrategy.GetInstance();
 
         public MainPage()
         {
