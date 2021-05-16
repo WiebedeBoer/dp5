@@ -513,6 +513,30 @@ namespace tekenprogramma
                         }
                     }
                 }
+                CheckInSubgroup(group, element.AccessKey);
+            }
+            return counter;
+        }
+
+        public int CheckInSubgroup(Group group, string key)
+        {
+            int counter = 0;
+            if (group.drawnElements.Count() > 0)
+            {
+                foreach (FrameworkElement groupelement in group.drawnElements)
+                {
+                    if (groupelement.AccessKey == key)
+                    {
+                        counter++;
+                    }
+                }
+            }
+            if (group.addedGroups.Count() > 0)
+            {
+                foreach (Group subgroup in group.addedGroups)
+                {
+                    counter = subgroup.CheckInSubgroup(subgroup, key);
+                }
             }
             return counter;
         }
@@ -527,6 +551,7 @@ namespace tekenprogramma
             while (i < depth)
             {
                 str += "\t";
+                i++;
             }
             int groupcount = group.drawnElements.Count() + group.addedGroups.Count();
             str = str + "group " + groupcount + "\n";
