@@ -510,6 +510,7 @@ namespace tekenprogramma
             invoker.drawnGroups.Clear();
             invoker.removedGroups.Clear();
             invoker.movedGroups.Clear();
+            invoker.unmovedGroups.Clear();
             invoker.selectedGroups.Clear();
             invoker.unselectedGroups.Clear();
             invoker.undoGroups.Clear();
