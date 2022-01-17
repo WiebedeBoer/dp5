@@ -60,6 +60,8 @@ namespace tekenprogramma
             //remove selected group
             invoker.unselectedGroups.Add(selectedgroup);
             invoker.selectedGroups.RemoveAt(invoker.selectedGroups.Count() - 1);
+            //add to unmoved
+            invoker.unmovedGroups.Add(selectedgroup);
 
             selectedgroup.Repaint(invoker, paintSurface); //repaint
         }
@@ -109,6 +111,8 @@ namespace tekenprogramma
             //remove selected group
             invoker.unselectedGroups.Add(selectedgroup);
             invoker.selectedGroups.RemoveAt(invoker.selectedGroups.Count() - 1);
+            //add to unmoved
+            invoker.unmovedGroups.Add(selectedgroup);
 
             selectedgroup.Repaint(invoker, paintSurface);//repaint
         }
