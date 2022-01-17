@@ -506,7 +506,7 @@ namespace tekenprogramma
             invoker.selectElements.Clear();
             invoker.unselectElements.Clear();
             invoker.undoElements.Clear();
-            invoker.redoComponents.Clear();
+            invoker.redoElements.Clear();
             invoker.drawnGroups.Clear();
             invoker.removedGroups.Clear();
             invoker.movedGroups.Clear();
