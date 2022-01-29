@@ -501,14 +501,22 @@ namespace tekenprogramma
             {
                 foreach (Group subgroup in group.addedGroups)
                 {
-                    subgroup.SelectInGroupHandle(invoker, key, group);
-                    foreach (FrameworkElement drawn in subgroup.drawnElements)
+                    if (subgroup.drawnElements.Count() > 0)
                     {
-                        if (drawn.AccessKey == key)
+                        foreach (FrameworkElement drawn in subgroup.drawnElements)
                         {
-                            invoker.selectedGroups.Add(group);
+                            if (drawn.AccessKey == key)
+                            {
+                                invoker.selectedGroups.Add(group);
+                            }
                         }
                     }
+
+                    if (subgroup.addedGroups.Count() > 0)
+                    {
+                        subgroup.SelectInGroupHandle(invoker, key, group);
+                    }
+
                 }
             }
         }
