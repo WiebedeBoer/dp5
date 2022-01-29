@@ -489,17 +489,17 @@ namespace tekenprogramma
                             }
                         }
                     }
-                    SelectInGroupHandle(invoker, key, group); //subgroup recursive
+                    SelectInGroupHandle(invoker, key, group, group); //subgroup recursive
                 }
             }
         }
 
         //recursively see if element is in subgroup and select the group
-        public void SelectInGroupHandle(Invoker invoker, string key, Group group)
+        public void SelectInGroupHandle(Invoker invoker, string key, Group group, Group checkgroup)
         {
-            if (group.addedGroups.Count() > 0)
+            if (checkgroup.addedGroups.Count() > 0)
             {
-                foreach (Group subgroup in group.addedGroups)
+                foreach (Group subgroup in checkgroup.addedGroups)
                 {
                     if (subgroup.drawnElements.Count() > 0)
                     {
@@ -514,7 +514,7 @@ namespace tekenprogramma
 
                     if (subgroup.addedGroups.Count() > 0)
                     {
-                        subgroup.SelectInGroupHandle(invoker, key, group);
+                        subgroup.SelectInGroupHandle(invoker, key, group, subgroup);
                     }
 
                 }
@@ -555,7 +555,7 @@ namespace tekenprogramma
             {
                 foreach (Group subgroup in group.addedGroups)
                 {
-                    subgroup.SelectInGroupHandle(invoker, key, group);
+                    subgroup.SelectInGroupHandle(invoker, key, group, group);
                     foreach (FrameworkElement drawn in subgroup.drawnElements)
                     {
                         if (drawn.AccessKey == key)
